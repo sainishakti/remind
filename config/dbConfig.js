@@ -1,12 +1,10 @@
 module.exports = {
-    HOST: 'localhost',
+    HOST: "10.0.2.2",
     USER: 'root',
     PASSWORD: 'password@123',
     DB: 'remind',
     dialect: 'mysql',
-    dialectOptions: {
-        socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
-      },
+   
 
     pool: {
         max: 5,
