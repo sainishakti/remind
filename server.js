@@ -12,7 +12,7 @@ const router = require('./routes/usersRouter.js')
 app.use('/api/users', router)
 
 // database.................
-require('../App/models/index.js');
+require('./models/index.js');
 
 
 

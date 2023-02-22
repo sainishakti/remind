@@ -31,7 +31,7 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
-db.users = require('../models/userModel.js')(sequelize, DataTypes)
+db.users = require('./userModel.js')(sequelize, DataTypes)
 
 
 db.sequelize.sync({ force: false })
