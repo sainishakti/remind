@@ -9,6 +9,7 @@ const router = require('express').Router()
 
 // use routers
 router.post('/addUsers', userController.addUsers)
+router.post('/UserLogin', userController.loginUser)
 
 
 
