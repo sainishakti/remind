@@ -8,10 +8,6 @@ const sequelize = new Sequelize(
     dbConfig.PASSWORD, {
         host: dbConfig.HOST,
         dialect: dbConfig.dialect,
-        dialectOptions: {
-            socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
-          },
-       
         
         pool: {
             max: dbConfig.pool.max,
