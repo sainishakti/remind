@@ -4,9 +4,6 @@ module.exports = {
     PASSWORD: 'password@123',
     DB: 'remind',
     dialect: 'mysql',
-    dialectOptions: {
-        socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
-      },
    
 
     pool: {
