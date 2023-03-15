@@ -1,6 +1,6 @@
 module.exports= (sequelize, DataTypes) => {
 
-    const users = sequelize.define("userTable", {
+    const users = sequelize.define("usersCollections", {
         firsName: {
             type: DataTypes.STRING
         },
@@ -30,6 +30,9 @@ module.exports= (sequelize, DataTypes) => {
             type: DataTypes.STRING
         },
         passwords: {
+            type: DataTypes.STRING
+        },
+        otp: {
             type: DataTypes.STRING
         },
     

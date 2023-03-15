@@ -2,7 +2,7 @@ const  jwt =require('jsonwebtoken')
 const db = require('../models') 
 const Users = db.users
 
-module.exports.checkUserAuth = async (req, res, next) => {
+module.exports.userAuth = async (req, res, next) => {
   let token
   const { authorization } = req.headers
   if (authorization && authorization.startsWith('Bearer')) {

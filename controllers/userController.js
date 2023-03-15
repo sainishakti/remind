@@ -203,12 +203,12 @@ if(isMatch){
 }
 //Send OTP On Mail
 const sendOtpEmail = async (req, res) => {
-    const { email } = req.body
+    const { email,id } = req.body
   var otp = Math.floor(1000 + Math.random() * 9000);
     if (email) {
       const user = await Users.findOne({where:{email:email}})
       if (user) {
-     const data = await Users.update({email:email ,otp:otp})
+     const data = await Users.update({email:email ,otp:otp},{where: { id:id }})
         const transporter = nodemailer.createTransport(smtpTransport({
           host: "smtp-mail.outlook.com", 
           secureConnection: false, 
