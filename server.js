@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 
 
 const app = express()
+app.use(cors())
 
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -16,10 +17,11 @@ require('./models/index.js');
 
 
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 3001
 
 //server
-
-app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`)
+const ipAddress = '192.168.1.22'
+app.listen(PORT,ipAddress, () => {
+    console.log(`server is running on port 'http://${ipAddress}:${PORT}`)
 })
+

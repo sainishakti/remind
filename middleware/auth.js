@@ -7,13 +7,13 @@ module.exports.userAuth = async (req, res, next) => {
   const { authorization } = req.headers
   if (authorization && authorization.startsWith('Bearer')) {
     try {
-      // Get Token from header
+      // Get Token from header......................
       token = authorization.split(' ')[1]
 
-      // Verify Token
+      // Verify Token...............................
       const { userID } = jwt.verify(token, process.env.JWT_SECRET_KEY)
 
-      // Get User from Token
+      // Get User from Token..........................
       req.users = await Users.findAll({where: { id:userID }}).select('-password')
 
       next()

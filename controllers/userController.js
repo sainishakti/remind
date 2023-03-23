@@ -19,13 +19,13 @@ const addUsers = async (req, res) => {
             res.status(400).send(response)
         }else{
         if(passwords ===confirmPassword){
-            const salt = await bcrypt.genSalt(10)
-            const newHashPassword = await bcrypt.hash(passwords, salt)
+            // const salt = await bcrypt.genSalt(10)
+            // const newHashPassword = await bcrypt.hash(passwords, salt)
             let info = {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
-                passwords: newHashPassword,
+                passwords: passwords,
             }
             const usersData = await Users.create(info)
             if(usersData){
@@ -60,13 +60,16 @@ const addUsers = async (req, res) => {
 const loginUser = async (req, res) => {
     try {
         const{email,passwords} = req.body;
+        console.log("eq.body",req.body);
         let user = await Users.findAll({where: { email: email }});
+        console.log("user",user);
     if(user){
         let users = await Users.findAll({
                 where: {[Op.and]: [
                     { email:  email},
                     { passwords: passwords}
                   ]}})
+                  console.log("users",users);
     if(users && users.length  >0){
             response.Message ="Login Successfully",
             response.success=true,
@@ -314,6 +317,34 @@ const sendOtpEmail = async (req, res) => {
             res.status(200).send(response)
       }
     }
+  //editFirstname and last name......................
+  const editUser = async (req, res) => {
+    const { firstName,lastName,userId} = req.body
+    try {
+      const data= await Users.update({firstName: firstName,lastName:lastName},{where: { id:userId }});
+      let users = await Users.findAll({where: { id: userId }});
+      if(data && data.length>0){
+        response.Message ="User Updated succesfully" ,
+        response.success=true,
+        response.data=users
+        res.status(200).send(response)
+      
+    }else{
+        response.Message ="User Don't Updated" ,
+        response.success=false,
+        response.data=null
+        res.status(400).send(response)
+    }
+         
+    }catch (error){
+          response.Message ="Something Went wrong",
+          response.success=false,
+          response.data=null
+          res.status(200).send(response)
+    }
+  }
+
+  
 module.exports = {
     addUsers,
     loginUser,
@@ -322,5 +353,6 @@ module.exports = {
     changePassword,
     sendOtpEmail,
     verifyOtp,
-    userPasswordReset
+    userPasswordReset,
+    editUser
    }

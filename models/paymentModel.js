@@ -5,23 +5,20 @@ module.exports= (sequelize, DataTypes) => {
         userId: {
             type: DataTypes.STRING
         },
-        ayment_method_details: {
-            type: DataTypes.ARRAY,
-        },
         firstName: {
             type: DataTypes.STRING
         },
         lastName: {
             type: DataTypes.STRING
         },
-        billingAddress: {
+        card: {
             type: DataTypes.STRING
         },
-        amount: {
+        expiration: {
             type: DataTypes.STRING
         },
-        receipt_url: {
-            type: DataTypes.ARRAY
+        cvc: {
+            type: DataTypes.STRING
         },
         address1: {
             type: DataTypes.STRING

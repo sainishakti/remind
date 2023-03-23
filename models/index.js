@@ -32,6 +32,8 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 
 db.users = require('./userModel.js')(sequelize, DataTypes)
+db.cart = require('./cartModel.js')(sequelize, DataTypes)
+db.payment = require('./paymentModel.js')(sequelize, DataTypes)
 
 
 db.sequelize.sync({ force: false })
