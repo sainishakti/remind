@@ -25,11 +25,15 @@ router.post('/updateUser',userController.editUser)
 
 //cartRouter...............................................
 router.post('/addcart',cartController.addCart)
+router.get('/getCart',cartController.GetCart)
+router.post('/editcart',cartController.editCart)
+
+
+//Payment........................................
 router.post('/savePayment',cartController.savePayment)
 router.get('/getPayment',cartController.GetPayment)
 router.post('/editPayment',cartController.editPayment)
-
-
+router.post('/order',cartController.order)
 
 
 
