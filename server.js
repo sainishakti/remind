@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 3001
 
 //server
 const ipAddress = '192.168.1.22'
-app.listen(PORT,ipAddress, () => {
-    console.log(`server is running on port 'http://${ipAddress}:${PORT}`)
+app.listen(PORT, () => {
+    console.log(`server is running on port 'http://${PORT}`)
 })
 
