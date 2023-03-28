@@ -60,7 +60,7 @@ const addUsers = async (req, res) => {
 const loginUser = async (req, res) => {
     try {
         const{email,passwords} = req.body;
-        console.log("eq.body",req.body);
+        console.log("req.body",req.body);
         let user = await Users.findAll({where: { email: email }});
         console.log("user",user);
     if(user){

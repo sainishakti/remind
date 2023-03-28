@@ -9,7 +9,7 @@ const payment = async(req,res)=>{
             let paymentMethod =await stripe.paymentMethods.create({
                 type: 'card',
                 card:{
-                    number:cardNumber,
+                    number:cardNumber,  
                     exp_month:exp_month,
                     exp_year:exp_year,
                     cvc:cvc
@@ -31,7 +31,7 @@ const payment = async(req,res)=>{
                 firstName:firstName,
                 lastName:lastName,
                 address1:address1,
-                amount:amount,
+                //amount:amount,
                 address2:address2,
                 postalCode:postalCode,
                 city:city,
@@ -39,14 +39,15 @@ const payment = async(req,res)=>{
                 phoneNumber:phoneNumber,
                 country:country
             }
-            const usersData = await stripePayment.create(info)
-        res.send({ "status": "201","success":true, "message": "Payment Add Successfully",usersData })
+            const usersData = await stripePayment.create(doc)
+        res.send({ "status": "201","success":true, "message": "Payment Create  Successfully",usersData })
     
         }else{
             res.status(401).send({"status": "401","success":false, "message": "All fields are required" })  
         }
         
     } catch (error) {
+        console.log("errr",error);
         res.status(401).send({"status": "401","success":false, "message":  "Something went Wrong" })
     }
     }

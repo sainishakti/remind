@@ -201,7 +201,8 @@ const editCart = async (req, res) => {
 //order...................................................
 const order = async (req, res) => {
     try {
-        const{userId,quantity,price,subtotal} = req.body;
+        const{userId,quantity,price} = req.body;
+        const subtotal = quantity*price
             let info = {
                 userId:userId,
                 quantity: quantity,
@@ -229,6 +230,39 @@ const order = async (req, res) => {
         
     }
 } 
+//editorder........................................................
+const editOrder= async (req, res) => {
+    try {
+        const{userId,quantity,price} = req.body;
+        const subtotal = quantity*price
+        const updateOrder = await orders.update({
+                userId:userId,
+                quantity: quantity,
+                price: price,
+                subtotal:subtotal,
+            },{where: { userId:userId }});
+            const data = await orders.findOne({where:{userId:userId}})
+            if(updateOrder && updateOrder.length>0){
+                response.Message ="Order Update  Successfully",
+                response.success=true,
+                response.data=data
+                res.status(200).send(response) 
+            }else{
+                response.Message ="Cart Don't Update",
+                response.success=false,
+                response.data=null
+                res.status(400).send(response)
+            }
+      
+      } catch (error) {
+        response.Message ="Something Went wrong",
+        response.success=false,
+        response.data=null
+        res.status(400).send(response)
+        
+    }
+}
+
 module.exports = {
     addCart,
     savePayment,
@@ -236,5 +270,6 @@ module.exports = {
     editPayment,
     GetCart,
     editCart,
-    order
+    order,
+    editOrder
    }

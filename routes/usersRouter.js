@@ -1,6 +1,7 @@
 // import controllers review, products
 const userController = require('../controllers/userController.js')
 const cartController = require('../controllers/cartController')
+const paymentController = require('../controllers/stripeController')
 //authMiddleware...........................................
 const {userAuth} = require('../middleware/auth.js')
 
@@ -34,7 +35,8 @@ router.post('/savePayment',cartController.savePayment)
 router.get('/getPayment',cartController.GetPayment)
 router.post('/editPayment',cartController.editPayment)
 router.post('/order',cartController.order)
-
+router.post('/updateOrder',cartController.editOrder)
+router.post('/payment',paymentController.payment)
 
 
 module.exports = router

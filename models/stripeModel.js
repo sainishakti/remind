@@ -1,6 +1,6 @@
 
 module.exports= (sequelize, DataTypes) => {
-    const stripe = sequelize.define("payment", {
+    const stripe = sequelize.define("paymentOrders", {
         userId: {
             type: DataTypes.STRING
         },
