@@ -61,3 +61,4 @@ const payment = async(req,res)=>{
    //password-8d33d3cb
    //host-cb@us-cdbr-east-06.cleardb.net
    //database-heroku_fa7e24f6f61ebe3
+   //mysql --host=cb@us-cdbr-east-06.cleardb.net --user=bb369c3b7e8a64 --password=8d33d3cb --reconnect heroku_fa7e24f6f61ebe3
