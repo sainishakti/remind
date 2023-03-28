@@ -11,11 +11,11 @@ module.exports = {
     // DB: "heroku_fa7e24f6f61ebe3",
     // dialect: "mysql",
 
-    HOST:   "cwcwimj6zu5aaddlj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    USER: "d60hwdmtgj4ew7cg",
-    PASSWORD: "d2whkmksohpm48oo",
-    DB: "d7zaclohugupwn4q",
-    dialect: "mysql",
+    HOST:"cwcwimj6zu5aaddlj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    USER:"d60hwdmtgj4ew7cg",
+    PASSWORD:"d2whkmksohpm48oo",
+    DB:"d7zaclohugupwn4q",
+    dialect:"mysql",
 
     pool: {
         max: 5,
