@@ -3,6 +3,7 @@ const response = require('../response/res')
 
 const carts = db.cart
 const orders = db.order
+const payment = db.payment
 
 //addCart....................................................................
 const addCart = async (req, res) => {
