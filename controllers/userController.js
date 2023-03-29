@@ -76,8 +76,8 @@ const loginUser = async (req, res) => {
         const token = jwt.sign({ userID: email }, "remindof@!@#$%^&", { expiresIn: '5d' })
             response.Message ="Login Successfully",
             response.success=true,
-            response.data=user
-            res.status(200).send({token:token,response})
+            response.data={user,token}
+            res.status(200).send(response)
        }else{
             response.Message ="Email Or Password Is Wrong",
             response.success=false,
