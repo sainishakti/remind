@@ -77,7 +77,7 @@ const loginUser = async (req, res) => {
             response.Message ="Login Successfully",
             response.success=true,
             response.data=user
-            res.status(200).send({token:tokenresponse})
+            res.status(200).send({token:token,response})
        }else{
             response.Message ="Email Or Password Is Wrong",
             response.success=false,
