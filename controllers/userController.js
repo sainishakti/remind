@@ -160,8 +160,8 @@ const changePassword = async (req, res) => {
     const { oldPassword,password, password_confirmation,id} = req.body
     const user = await  Users.findAll({where: { id: id }});
     console.log("user.datavalues.password",user[0].dataValues.passwords);
-    const isMatch = await bcrypt.compare(oldPassword, user[0].dataValues.passwords)
-if(isMatch){
+    //const isMatch = await bcrypt.compare(oldPassword, user[0].dataValues.passwords)
+if(oldPassword === user[0].dataValues.passwords){
     if (password && password_confirmation) {
       if (password !== password_confirmation) {
         response.Message ="New Password and Confirm New Password doesn't match",
