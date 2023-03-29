@@ -3,6 +3,7 @@ const response = require('../response/res')
 const { Op } = require('sequelize');
 const  bcrypt =require("bcrypt");
 const nodemailer = require("nodemailer")
+const  jwt =require("jsonwebtoken")
 var smtpTransport = require('nodemailer-smtp-transport');
 const JWT_SECRET_KEY ="Remind@!#$%^"
 
@@ -71,10 +72,12 @@ const loginUser = async (req, res) => {
                   ]}})
                   console.log("users",users);
     if(users && users.length  >0){
+        const user = await Users.findAll({where: { email: email }});
+        const token = jwt.sign({ userID: email }, "remindof@!@#$%^&", { expiresIn: '5d' })
             response.Message ="Login Successfully",
             response.success=true,
-            response.data=users
-            res.status(200).send(response)
+            response.data=user
+            res.status(200).send({token:tokenresponse})
        }else{
             response.Message ="Email Or Password Is Wrong",
             response.success=false,
@@ -153,6 +156,30 @@ const GetAccount = async (req, res) => {
         res.status(400).send(response)
         
     }
+}
+//getaddress.............................................
+const GetAddress = async (req, res) => {
+  try {
+      const{id} = req.query;
+      let users = await Users.findAll({where: { id: id }});
+      if(users && users.length>0){
+          response.Message ="Address Get Successfully",
+          response.success=true,
+          response.data=users
+          res.status(200).send(response)
+      }else{
+          response.Message ="Not Found user",
+          response.success=false,
+          response.data=null
+          res.status(400).send(response)
+  }
+    } catch (error) {
+      response.Message ="Something Went wrong",
+      response.success=false,
+      response.data=null
+      res.status(400).send(response)
+      
+  }
 }
 //ChangePassword........................................
 const changePassword = async (req, res) => {
@@ -354,5 +381,6 @@ module.exports = {
     sendOtpEmail,
     verifyOtp,
     userPasswordReset,
-    editUser
+    editUser,
+    GetAddress
    }
