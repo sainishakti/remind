@@ -36,6 +36,7 @@ router.get('/getPayment',cartController.GetPayment)
 router.post('/editPayment',cartController.editPayment)
 router.post('/order',cartController.order)
 router.post('/updateOrder',cartController.editOrder)
+router.get('/getOrder',cartController.GetOrder)
 router.post('/payment',paymentController.payment)
 
 

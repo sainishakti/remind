@@ -263,6 +263,29 @@ const editOrder= async (req, res) => {
         
     }
 }
+const GetOrder = async (req, res) => {
+    try {
+        const{userId} = req.query;
+        let users = await orders.findAll({where: { userId: userId }});
+        if(users && users.length>0){
+            response.Message ="Data Get Successfully",
+            response.success=true,
+            response.data=users
+            res.status(200).send(response)
+        }else{
+            response.Message ="Not Found Data",
+            response.success=false,
+            response.data=null
+            res.status(400).send(response)
+    }
+      } catch (error) {
+        response.Message ="Something Went wrong",
+        response.success=false,
+        response.data=null
+        res.status(400).send(response)
+        
+    }
+}
 
 module.exports = {
     addCart,
@@ -272,5 +295,6 @@ module.exports = {
     GetCart,
     editCart,
     order,
-    editOrder
+    editOrder,
+    GetOrder
    }
