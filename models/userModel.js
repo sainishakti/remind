@@ -1,7 +1,7 @@
 module.exports= (sequelize, DataTypes) => {
 
-    const users = sequelize.define("usersCollections", {
-        firsName: {
+    const users = sequelize.define("users", {
+        firstName: {
             type: DataTypes.STRING
         },
         lastName: {

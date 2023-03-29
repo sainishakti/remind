@@ -23,7 +23,7 @@ const addUsers = async (req, res) => {
             // const salt = await bcrypt.genSalt(10)
             // const newHashPassword = await bcrypt.hash(passwords, salt)
             let info = {
-                firstName: firstName,
+              firstName: firstName,
                 lastName: lastName,
                 email: email,
                 passwords: passwords,
