@@ -1,9 +1,11 @@
+const { users } = require('../models')
 const db = require('../models')
 const response = require('../response/res')
 
 const carts = db.cart
 const orders = db.order
 const payment = db.payment
+const Users = db.users
 
 //addCart....................................................................
 const addCart = async (req, res) => {
@@ -287,6 +289,7 @@ const GetOrder = async (req, res) => {
     }
 }
 
+
 module.exports = {
     addCart,
     savePayment,
@@ -296,5 +299,6 @@ module.exports = {
     editCart,
     order,
     editOrder,
-    GetOrder
+    GetOrder,
+  
    }

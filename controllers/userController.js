@@ -8,6 +8,7 @@ var smtpTransport = require('nodemailer-smtp-transport');
 const JWT_SECRET_KEY ="Remind@!#$%^"
 
 const Users = db.users
+const payment = db.payment
 //addUser....................................................................
 const addUsers = async (req, res) => {
     try {
@@ -162,6 +163,30 @@ const GetAddress = async (req, res) => {
   try {
       const{id} = req.query;
       let users = await Users.findAll({where: { id: id }});
+      if(users && users.length>0){
+          response.Message ="Address Get Successfully",
+          response.success=true,
+          response.data=users
+          res.status(200).send(response)
+      }else{
+          response.Message ="Not Found user",
+          response.success=false,
+          response.data=null
+          res.status(400).send(response)
+  }
+    } catch (error) {
+      response.Message ="Something Went wrong",
+      response.success=false,
+      response.data=null
+      res.status(400).send(response)
+      
+  }
+}
+//alladdress.......................................
+const AllAddress = async (req, res) => {
+  try {
+      const{id} = req.query;
+      let users = await Users.findAll();
       if(users && users.length>0){
           response.Message ="Address Get Successfully",
           response.success=true,
@@ -370,7 +395,59 @@ const sendOtpEmail = async (req, res) => {
           res.status(200).send(response)
     }
   }
-
+//deleteaddresss
+const deleteAdress = async (req, res) => {
+  try {
+      const {userId} = req.body;
+      let users = await Users.destroy({
+          where: {
+            userId: userId
+          }
+      })
+      if(users === 1){
+          response.Message ="Address Delete Successfully",
+          response.success=true,
+          response.data=null
+          res.status(200).send(response)
+      }else{
+          response.Message ="Not Address Delete",
+          response.success=false,
+          response.data=null
+          res.status(400).send(response)
+  }
+    } catch (error) {
+      console.log(error);
+      response.Message ="Something Went wrong",
+      response.success=false,
+      response.data=null
+      res.status(400).send(response)
+      
+  }
+}
+//deleteSavePayment
+const deletePayment = async (req, res) => {
+  try {
+      const {userId} = req.body;
+      let users = await payment.destroy({where: { userId: userId }});
+      if(users ===1){
+          response.Message ="payment Delete Successfully",
+          response.success=true,
+          response.data=null
+          res.status(200).send(response)
+      }else{
+          response.Message ="Not payment Delete",
+          response.success=false,
+          response.data=null
+          res.status(400).send(response)
+  }
+    } catch (error) {
+      response.Message ="Something Went wrong",
+      response.success=false,
+      response.data=null
+      res.status(400).send(response)
+      
+  }
+}
   
 module.exports = {
     addUsers,
@@ -382,5 +459,8 @@ module.exports = {
     verifyOtp,
     userPasswordReset,
     editUser,
-    GetAddress
+    GetAddress,
+    deleteAdress,
+    deletePayment,
+    AllAddress
    }
