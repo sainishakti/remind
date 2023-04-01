@@ -3,6 +3,9 @@ module.exports= (sequelize, DataTypes) => {
         userId: {
             type: DataTypes.STRING
         },
+        productId: {
+            type: DataTypes.STRING
+        },
         firstName: {
             type: DataTypes.STRING
         },

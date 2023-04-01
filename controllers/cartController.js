@@ -10,9 +10,10 @@ const Users = db.users
 //addCart....................................................................
 const addCart = async (req, res) => {
     try {
-        const{userId,firstName,lastName,email,phoneNumber,isThisVideoforYourLife,starFirstName,starLastName} = req.body;
+        const{userId,productId,firstName,lastName,email,phoneNumber,isThisVideoforYourLife,starFirstName,starLastName} = req.body;
             let info = {
                 userId:userId,
+                productId:productId,
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
@@ -171,9 +172,10 @@ const GetCart = async (req, res) => {
 //editCart.......................
 const editCart = async (req, res) => {
     try {
-        const{userId,firstName,lastName,email,phoneNumber,isThisVideoforYourLife,starFirstName,starLastName} = req.body;
+        const{userId,productId,firstName,lastName,email,phoneNumber,isThisVideoforYourLife,starFirstName,starLastName} = req.body;
         const updateAddress = await carts.update({
            firstName: firstName,
+           productId:productId,
                 lastName: lastName,
                 email: email,
                 phoneNumber:phoneNumber,
