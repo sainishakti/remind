@@ -102,12 +102,38 @@ const deleteProduct = async (req, res) => {
         
     }
 }
+//getProductId
+const GetProductDetails = async (req, res) => {
+    try {
+        const{productId} = req.query
+        console.log("...........",productId);
+        let users = await product.findAll({where:{id:productId}});
+        if(users && users.length>0){
+            response.Message ="Data Get Successfully",
+            response.success=true,
+            response.data=users
+            res.status(200).send(response)
+        }else{
+            response.Message ="Not Found Data",
+            response.success=false,
+            response.data=null
+            res.status(400).send(response)
+    }
+      } catch (error) {
+        response.Message ="Something Went wrong",
+        response.success=false,
+        response.data=null
+        res.status(400).send(response)
+        
+    }
+}
 
 
 module.exports = {
     addProduct,
     GetProduct,
     deleteProduct,
-    updateProduct
+    updateProduct,
+    GetProductDetails
 }
   
