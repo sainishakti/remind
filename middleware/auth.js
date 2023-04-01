@@ -1,6 +1,7 @@
 const  jwt =require('jsonwebtoken')
 const db = require('../models') 
 const Users = db.users
+const JWT_SECRET_KEY ="Remind@!#$%^"
 
 module.exports.userAuth = async (req, res, next) => {
   let token
@@ -11,11 +12,11 @@ module.exports.userAuth = async (req, res, next) => {
       token = authorization.split(' ')[1]
 
       // Verify Token...............................
-      const { userID } = jwt.verify(token, process.env.JWT_SECRET_KEY)
-
+      const { userID } = jwt.verify(token, JWT_SECRET_KEY)
+      console.log("userId",userID);
       // Get User from Token..........................
-      req.users = await Users.findAll({where: { id:userID }}).select('-password')
-
+      req.users = await Users.findAll({where: { email:userID }})
+      console.log("...................................",req.users);
       next()
     } catch (error) {
       console.log(error)

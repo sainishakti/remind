@@ -269,12 +269,12 @@ const sendOtpEmail = async (req, res) => {
           secureConnection: false, 
           port: 587,
           auth: {
-              user: "shakti2525@outlook.com",
+              user: "aryasaini2520@outlook.com",
               pass: "saini@2525"
           }
       }));
       var mailOptions = {
-        from:  "shakti2525@outlook.com", 
+        from:  "aryasaini2520@outlook.com", 
         to: email, 
         subject: 'Sending Otp Your Mail',
         text: ""+otp, 
@@ -316,7 +316,8 @@ const sendOtpEmail = async (req, res) => {
             { otp: otp}
           ]}})
       if(user){
-        const token = jwt.sign({ userID: user._id }, JWT_SECRET_KEY, { expiresIn: '5d' })
+        const id = user[0].dataValues.email
+        const token = jwt.sign({ userID:id }, JWT_SECRET_KEY, { expiresIn: '5d' })
         response.Message ="Otp Verify Successfully",
         response.success=true,
         response.data={token:token}
@@ -345,17 +346,22 @@ const sendOtpEmail = async (req, res) => {
             response.data=null
             res.status(400).send(response)
        } else {
-            const salt = await bcrypt.genSalt(10)
-            const newHashPassword = await bcrypt.hash(password, salt)
-            await await Users.findAll({
-              where: {[Op.and]: [
-                  { password:  newHashPassword},
-                ]}})
-            response.Message ="Password Reset Successfully",
-            response.success=false,
-            response.data=null
-            res.status(200).send(response)
-          }
+            // const salt = await bcrypt.genSalt(10)
+            // const newHashPassword = await bcrypt.hash(password, salt)
+            console.log("req.users[0]._previousDataValues.id ",req.users[0]._previousDataValues.id );
+            const data= await Users.update({passwords: password},{where: { id:req.users[0]._previousDataValues.id }});
+            if(data ===1){
+              response.Message ="Password Reset Successfully",
+              response.success=true,
+              response.data=null
+              res.status(200).send(response)
+            }else{
+              response.Message ="Don't Reset Password",
+              response.success=false,
+              response.data=null
+              res.status(400).send(response)
+              }
+            }
         } else {
             response.Message ="All Fields are Required",
             response.success=false,

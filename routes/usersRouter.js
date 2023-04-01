@@ -23,7 +23,7 @@ router.get('/GetAddress', userController.GetAddress)
 router.get('/AllAddress', userController.AllAddress)
 router.post('/ChangePasswords', userController.changePassword)
 router.post('/SendOtp', userController.sendOtpEmail)
-router.post('/VerifyOtp', userController.sendOtpEmail)
+router.post('/VerifyOtp', userController.verifyOtp)
 router.post('/resetPassword',userAuth,userController.userPasswordReset)
 router.post('/updateUser',userController.editUser)
 
