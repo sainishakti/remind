@@ -4,11 +4,12 @@ const product = db.product
 //addUser....................................................................
 const addProduct = async (req, res) => {
     try {
-        const{title,price,description} = req.body;
+        const{title,price,description,slug} = req.body;
             let info = {
                     title: title,
                     price: price,
                     description: description,
+                    slug:slug,
             }
             const productData = await product.create(info)
             if(productData){
@@ -81,7 +82,8 @@ const deleteProduct = async (req, res) => {
     try {
         const{productId} = req.body;
         const updateAddress = await product.update({
-            image:"https://websitetransfereval.herokuapp.com/uploads/"+req.file.filename},{where: { id:productId }});
+             slug:req.body.slug,
+             image:"https://websitetransfereval.herokuapp.com/uploads/"+req.file.filename},{where: { id:productId }});
             if(updateAddress && updateAddress.length>0){
                 response.Message ="product Update  Successfully",
                 response.success=true,
