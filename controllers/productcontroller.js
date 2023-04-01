@@ -107,9 +107,8 @@ const deleteProduct = async (req, res) => {
 //getProductId
 const GetProductDetails = async (req, res) => {
     try {
-        const{productId} = req.query
-        console.log("...........",productId);
-        let users = await product.findAll({where:{id:productId}});
+        const{slug} = req.query
+        let users = await product.findAll({where:{slug:slug}});
         if(users && users.length>0){
             response.Message ="Data Get Successfully",
             response.success=true,
