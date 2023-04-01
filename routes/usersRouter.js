@@ -2,6 +2,7 @@
 const userController = require('../controllers/userController.js')
 const cartController = require('../controllers/cartController')
 const paymentController = require('../controllers/stripeController')
+const productController = require('../controllers/productcontroller')
 //authMiddleware...........................................
 const {userAuth} = require('../middleware/auth.js')
 
@@ -42,6 +43,14 @@ router.post('/order',cartController.order)
 router.post('/updateOrder',cartController.editOrder)
 router.get('/getOrder',cartController.GetOrder)
 router.post('/payment',paymentController.payment)
+
+//product......................
+router.post('/addProduct',productController.addProduct)
+router.get('/getProduct',productController.GetProduct)
+router.post('/deleteProduct',productController.deleteProduct)
+
+
+
 
 
 module.exports = router

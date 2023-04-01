@@ -36,6 +36,7 @@ db.cart = require('./cartModel.js')(sequelize, DataTypes)
 db.payment = require('./paymentModel.js')(sequelize, DataTypes)
 db.order = require('./orderModel.js')(sequelize, DataTypes)
 db.stripPayment = require('./stripeModel.js')(sequelize, DataTypes)
+db.product = require('./productModel.js')(sequelize, DataTypes)
 
 
 db.sequelize.sync({ force: false })
