@@ -76,10 +76,38 @@ const deleteProduct = async (req, res) => {
         
     }
   }
+  //updateProduct.................................
+  const updateProduct = async (req, res) => {
+    try {
+        const{productId} = req.body;
+        const updateAddress = await product.update({
+            image:"https://websitetransfereval.herokuapp.com/uploads/"+req.file.filename},{where: { id:productId }});
+            if(updateAddress && updateAddress.length>0){
+                response.Message ="product Update  Successfully",
+                response.success=true,
+                response.data=data
+                res.status(200).send(response) 
+            }else{
+                response.Message ="Product Don't Update",
+                response.success=false,
+                response.data=null
+                res.status(400).send(response)
+            }
+      
+      } catch (error) {
+        response.Message ="Something Went wrong",
+        response.success=false,
+        response.data=null
+        res.status(400).send(response)
+        
+    }
+}
+
 
 module.exports = {
     addProduct,
     GetProduct,
-    deleteProduct
+    deleteProduct,
+    updateProduct
 }
   

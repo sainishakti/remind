@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // routers
 const router = require('./routes/usersRouter.js')
 app.use('/api/users', router)
+app.use('/uploads',express.static('uploads'))
 
 // database.................
 require('./models/index.js');

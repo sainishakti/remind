@@ -5,12 +5,22 @@ const paymentController = require('../controllers/stripeController')
 const productController = require('../controllers/productcontroller')
 //authMiddleware...........................................
 const {userAuth} = require('../middleware/auth.js')
+const multer = require('multer')
 
 
 
 
 // router
 const router = require('express').Router()
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname)
+    }
+})
+var upload = multer({ storage: storage })
 
 
 // use routers
@@ -48,7 +58,7 @@ router.post('/payment',paymentController.payment)
 router.post('/addProduct',productController.addProduct)
 router.get('/getProduct',productController.GetProduct)
 router.post('/deleteProduct',productController.deleteProduct)
-
+router.post('/updateProduct',upload.single('file'),productController.updateProduct)
 
 
 
