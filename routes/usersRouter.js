@@ -53,6 +53,8 @@ router.post('/order',cartController.order)
 router.post('/updateOrder',cartController.editOrder)
 router.get('/getOrder',cartController.GetOrder)
 router.post('/payment',paymentController.payment)
+router.get('/GetCartWithProduct',cartController.GetCartWithProduct)
+
 
 //product......................
 router.post('/addProduct',productController.addProduct)

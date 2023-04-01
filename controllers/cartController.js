@@ -1,4 +1,4 @@
-const { users } = require('../models')
+const { users, product } = require('../models')
 const db = require('../models')
 const response = require('../response/res')
 
@@ -6,6 +6,7 @@ const carts = db.cart
 const orders = db.order
 const payment = db.payment
 const Users = db.users
+const productModel = db.product
 
 //addCart....................................................................
 const addCart = async (req, res) => {
@@ -290,7 +291,32 @@ const GetOrder = async (req, res) => {
         
     }
 }
-
+//gtuserIdProduct............................................
+const GetCartWithProduct = async (req, res) => {
+    try {
+        const{userId} = req.query;
+        let users = await carts.findAll({where: { userId: userId }});
+         const productId = users[0].dataValues.productId
+         let productData = await productModel.findAll({where: { id: productId }});
+        if(users && users.length>0){
+            response.Message ="Data Get Successfully",
+            response.success=true,
+            response.data=[...users,...productData]
+            res.status(200).send(response)
+        }else{
+            response.Message ="Not Found user",
+            response.success=false,
+            response.data=null
+            res.status(400).send(response)
+    }
+      } catch (error) {
+        response.Message ="Something Went wrong",
+        response.success=false,
+        response.data=null
+        res.status(400).send(response)
+        
+    }
+}
 
 module.exports = {
     addCart,
@@ -302,5 +328,6 @@ module.exports = {
     order,
     editOrder,
     GetOrder,
+    GetCartWithProduct
   
    }
