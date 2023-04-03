@@ -11,13 +11,15 @@ const productModel = db.product
 //addCart....................................................................
 const addCart = async (req, res) => {
     try {
-        const{userId,productId,firstName,lastName,email,phoneNumber,isThisVideoforYourLife,starFirstName,starLastName} = req.body;
+        const{quantity,price,userId,productId,firstName,lastName,email,phoneNumber,isThisVideoforYourLife,starFirstName,starLastName} = req.body;
             let info = {
                 userId:userId,
                 productId:productId,
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
+                quantity:quantity,
+                price:price,
                 phoneNumber:phoneNumber,
                 isThisVideoforYourLife: isThisVideoforYourLife,
                 starFirstName:starFirstName,
