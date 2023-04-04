@@ -115,7 +115,7 @@ const SaveAddress = async (req, res) => {
             phoneNumber:phoneNumber },{where: { id:id }});
             const data = await Users.findOne({where:{id:id}})
             if(updateAddress && updateAddress.length>0){
-                response.Message ="User Update  Successfully",
+                response.Message ="Address Add Successfully",
                 response.success=true,
                 response.data=data
                 res.status(200).send(response) 
