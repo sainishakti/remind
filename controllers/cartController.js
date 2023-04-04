@@ -331,13 +331,13 @@ const deleteCart = async (req, res) => {
     try {
         const {userId} = req.body;
         let users = await carts.destroy({where: { userId: userId }});
-        if(users ===1){
+        if(users){
             response.Message ="Cart Delete Successfully",
             response.success=true,
             response.data=null
             res.status(200).send(response)
         }else{
-            response.Message ="Not payment Delete",
+            response.Message ="Not Cart Delete",
             response.success=false,
             response.data=null
             res.status(400).send(response)
