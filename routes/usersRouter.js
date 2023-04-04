@@ -42,6 +42,8 @@ router.post('/updateUser',userController.editUser)
 router.post('/addcart',cartController.addCart)
 router.get('/getCart',cartController.GetCart)
 router.post('/editcart',cartController.editCart)
+router.post('/removeCart',cartController.deleteCart)
+
 
 
 //Payment........................................
