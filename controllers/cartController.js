@@ -13,7 +13,7 @@ const addCart = async (req, res) => {
     try {
         const{quantity,price,userId,productId,firstName,lastName,email,phoneNumber,isThisVideoforYourLife,starFirstName,starLastName} = req.body;
         let users = await carts.findAll({where: { userId: userId }});
-        if(users[0].dataValues){
+        if(users.length>0){
             response.Message ="Cart Already Add",
             response.success=false,
             response.data=null
