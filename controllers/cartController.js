@@ -12,7 +12,14 @@ const productModel = db.product
 const addCart = async (req, res) => {
     try {
         const{quantity,price,userId,productId,firstName,lastName,email,phoneNumber,isThisVideoforYourLife,starFirstName,starLastName} = req.body;
-            let info = {
+        let users = await carts.findAll({where: { userId: userId }});
+        if(users[0].dataValues){
+            response.Message ="Cart Already Add",
+            response.success=false,
+            response.data=null
+            res.status(400).send(response)
+        } else{
+        let info = {
                 userId:userId,
                 productId:productId,
                 firstName: firstName,
@@ -37,6 +44,7 @@ const addCart = async (req, res) => {
             response.data=null
             res.status(400).send(response)
     }
+}
     } catch (error) {
         console.log("err",error);
         response.Message ="Something Went wrong"
