@@ -222,13 +222,15 @@ const editCart = async (req, res) => {
 //order...................................................
 const order = async (req, res) => {
     try {
-        const{userId,quantity,price} = req.body;
+        const{userId,quantity,price,image,title} = req.body;
         const subtotal = quantity*price
             let info = {
                 userId:userId,
                 quantity: quantity,
                 price: price,
                 subtotal:subtotal,
+                image:image,
+                title:title,
             }
             const usersData = await orders.create(info)
             if(usersData){

@@ -1,5 +1,5 @@
 module.exports= (sequelize, DataTypes) => {
-    const orders = sequelize.define('orderdata',{
+    const orders = sequelize.define('orderItem',{
           userId: {
               type: DataTypes.STRING
           },
@@ -12,6 +12,13 @@ module.exports= (sequelize, DataTypes) => {
           subtotal: {
               type: DataTypes.INTEGER
           },
+          image: {
+            type: DataTypes.STRING
+        },
+        title: {
+            type: DataTypes.STRING
+        },
+
          
       
       })
