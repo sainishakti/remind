@@ -1,6 +1,7 @@
 const { users, product } = require('../models')
 const db = require('../models')
 const response = require('../response/res')
+const { Op } = require('sequelize');
 
 
 
@@ -312,8 +313,8 @@ const GetOrder = async (req, res) => {
 const GetCartWithProduct = async (req, res) => {
     try {
         const{userId} = req.query;
-        let users = await carts.findAll({where: { userId: userId }});
-         const productId = users[0].dataValues.productId
+        let users = await carts.findAll({where: { userId: userId }})
+        const productId = users.map((item)=>item.productId)
          let productData = await productModel.findAll({where: { id: productId }});
         if(users && users.length>0){
             response.Message ="Data Get Successfully",
@@ -336,8 +337,12 @@ const GetCartWithProduct = async (req, res) => {
 }
 const deleteCart = async (req, res) => {
     try {
-        const {userId} = req.body;
-        let users = await carts.destroy({where: { userId: userId }});
+        const {userId,productId} = req.body;
+        let users = await carts.destroy({
+            where: {[Op.and]: [
+                { userId:  userId},
+                { productId: productId}
+              ]}});
         if(users){
             response.Message ="Cart Delete Successfully",
             response.success=true,
