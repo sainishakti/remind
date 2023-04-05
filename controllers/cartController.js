@@ -2,6 +2,9 @@ const { users, product } = require('../models')
 const db = require('../models')
 const response = require('../response/res')
 
+
+
+
 const carts = db.cart
 const orders = db.order
 const payment = db.payment
@@ -12,8 +15,10 @@ const productModel = db.product
 const addCart = async (req, res) => {
     try {
         const{quantity,price,userId,productId,firstName,lastName,email,phoneNumber,isThisVideoforYourLife,starFirstName,starLastName} = req.body;
-        let users = await carts.findAll({where: { userId: userId }});
-        if(users.length>0){
+        let users = await carts.findAll(
+                { userId:  userId})
+       const productIds = users[0].dataValues.productId       
+        if(productIds == productId){
             response.Message ="Cart Already Add",
             response.success=false,
             response.data=null
