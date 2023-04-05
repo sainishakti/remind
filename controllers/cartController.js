@@ -223,17 +223,20 @@ const editCart = async (req, res) => {
 //order...................................................
 const order = async (req, res) => {
     try {
-        const{userId,quantity,price,image,title} = req.body;
-        const subtotal = quantity*price
+        // const{userId,quantity,price,image,title} = req.body;
+        const data = req.body.data
+        for(let datas of data){
+        const subtotal = datas.quantity*datas.price
             let info = {
-                userId:userId,
-                quantity: quantity,
-                price: price,
+                userId:datas.userId,
+                quantity: datas.quantity,
+                price: datas.price,
                 subtotal:subtotal,
-                image:image,
-                title:title,
+                image:datas.image,
+                title:datas.title,
             }
-            const usersData = await orders.create(info)
+        var usersData = await orders.create(info)
+        }
             if(usersData){
             response.Message ="Order Add Successfully",
             response.success=true,
