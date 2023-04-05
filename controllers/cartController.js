@@ -306,7 +306,7 @@ const GetCartWithProduct = async (req, res) => {
     try {
         const{userId} = req.query;
         let users = await carts.findAll({where: { userId: userId }});
-         //const productId = users[0].dataValues.productId
+         const productId = users[0].dataValues.productId
          let productData = await productModel.findAll({where: { id: productId }});
         if(users && users.length>0){
             response.Message ="Data Get Successfully",
