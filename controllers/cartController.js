@@ -306,12 +306,12 @@ const GetCartWithProduct = async (req, res) => {
     try {
         const{userId} = req.query;
         let users = await carts.findAll({where: { userId: userId }});
-         const productId = users[0].dataValues.productId
+         //const productId = users[0].dataValues.productId
          let productData = await productModel.findAll({where: { id: productId }});
         if(users && users.length>0){
             response.Message ="Data Get Successfully",
             response.success=true,
-            response.data=[...users,...productData]
+            response.data=productData
             res.status(200).send(response)
         }else{
             response.Message ="Not Found user",
