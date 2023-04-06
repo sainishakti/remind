@@ -15,17 +15,21 @@ const productModel = db.product
 //addCart....................................................................
 const addCart = async (req, res) => {
     try {
+        
         const{quantity,price,userId,productId,firstName,lastName,email,phoneNumber,isThisVideoforYourLife,starFirstName,starLastName} = req.body;
-        let users = await carts.findAll(
-                { userId:  userId})
-       const productIds = users[0].dataValues.productId       
-        if(productIds == productId){
-            response.Message ="Cart Already Add",
-            response.success=false,
-            response.data=null
-            res.status(400).send(response)
-        } else{
-        let info = {
+    //     let users = await carts.findAll(where:  
+    //             { userId:  userId},
+    //             { productId: productId}
+    //     );
+    //     console.log("user",users);
+    //     if( users){
+    //         response.Message ="Cart Already Add",
+    //         response.success=false,
+    //         response.data=null
+    //         res.status(400).send(response)
+    //     } 
+    // else{
+        var info = {
                 userId:userId,
                 productId:productId,
                 firstName: firstName,
@@ -37,7 +41,7 @@ const addCart = async (req, res) => {
                 isThisVideoforYourLife: isThisVideoforYourLife,
                 starFirstName:starFirstName,
                 starLastName:starLastName
-            }
+        }
             const usersData = await carts.create(info)
             if(usersData){
             response.Message ="Cart Add Successfully",
@@ -49,7 +53,7 @@ const addCart = async (req, res) => {
             response.success=false,
             response.data=null
             res.status(400).send(response)
-    }
+    //}
 }
     } catch (error) {
         console.log("err",error);
