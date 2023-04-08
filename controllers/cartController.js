@@ -17,18 +17,22 @@ const addCart = async (req, res) => {
     try {
         
         const{quantity,price,userId,productId,firstName,lastName,email,phoneNumber,isThisVideoforYourLife,starFirstName,starLastName} = req.body;
-    //     let users = await carts.findAll(where:  
-    //             { userId:  userId},
-    //             { productId: productId}
-    //     );
-    //     console.log("user",users);
-    //     if( users){
-    //         response.Message ="Cart Already Add",
-    //         response.success=false,
-    //         response.data=null
-    //         res.status(400).send(response)
-    //     } 
-    // else{
+         let users = await carts.findAll({
+  where: {
+    [Op.and]: [
+      { userId: userId },
+      { productId: productId }
+    ]
+  }
+});
+        console.log("user",users);
+        if( users && users.length >0){
+            response.Message ="Cart Already Add",
+            response.success=false,
+            response.data=null
+            res.status(400).send(response)
+        } 
+    else{
         var info = {
                 userId:userId,
                 productId:productId,
@@ -53,7 +57,7 @@ const addCart = async (req, res) => {
             response.success=false,
             response.data=null
             res.status(400).send(response)
-    //}
+    }
 }
     } catch (error) {
         console.log("err",error);
