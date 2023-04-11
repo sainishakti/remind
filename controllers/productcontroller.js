@@ -80,15 +80,16 @@ const deleteProduct = async (req, res) => {
   //updateProduct.................................
   const updateProduct = async (req, res) => {
     try {
-        const{productId,price} = req.body;
+        const{productId,price,quantity} = req.body;
         const updateAddress = await product.update({
              slug:req.body.slug,
              price:price,
+             quantity:quantity,
              image:"https://websitetransfereval.herokuapp.com/uploads/"+req.file.filename},{where: { id:productId }});
             if(updateAddress && updateAddress.length>0){
                 response.Message ="product Update  Successfully",
                 response.success=true,
-                response.data=data
+                response.data=null
                 res.status(200).send(response) 
             }else{
                 response.Message ="Product Don't Update",

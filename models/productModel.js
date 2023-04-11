@@ -1,5 +1,5 @@
 module.exports= (sequelize, DataTypes) => {
-    const product = sequelize.define('productCart',{
+    const product = sequelize.define('productCartsData',{
           title: {
               type: DataTypes.STRING
           },
@@ -14,10 +14,18 @@ module.exports= (sequelize, DataTypes) => {
           },
           slug: {
             type: DataTypes.STRING
+          },
+          product: {
+            type : DataTypes.STRING
+        },
+        quantity: {
+            type : DataTypes.STRING
+        },
+          
         },
          
       
-      })
+      )
   
       return product
   
