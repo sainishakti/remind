@@ -4,12 +4,13 @@ const product = db.product
 //addUser....................................................................
 const addProduct = async (req, res) => {
     try {
-        const{title,price,description,slug} = req.body;
+        const{title,price,description,slug,quantity} = req.body;
             let info = {
                     title: title,
                     price: price,
                     description: description,
                     slug:slug,
+                    quantity:quantity
             }
             const productData = await product.create(info)
             if(productData){
