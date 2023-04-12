@@ -1,6 +1,7 @@
 const db = require('../models')
 const response = require('../response/res')
 const product = db.product
+const orders= db.order
 //addUser....................................................................
 const addProduct = async (req, res) => {
     try {
@@ -131,6 +132,30 @@ const GetProductDetails = async (req, res) => {
         
     }
 }
+const GetSubTotal = async (req, res) => {
+    try {
+        console.log("..............",req.body.userId);
+        let subtotal = await orders.findAll({where: { id: req.body.userId }})
+        console.log("................",subtotal);
+        if(users && users.length>0){
+            response.Message ="Data Get Successfully",
+            response.success=true,
+            response.data=subtotal[0].dataValues.subtotal
+            res.status(200).send(response)
+        }else{
+            response.Message ="Not Found Data",
+            response.success=false,
+            response.data=null
+            res.status(400).send(response)
+    }
+      } catch (error) {
+        response.Message ="Something Went wrong",
+        response.success=false,
+        response.data=null
+        res.status(400).send(response)
+        
+    }
+}
 
 
 module.exports = {
@@ -138,6 +163,7 @@ module.exports = {
     GetProduct,
     deleteProduct,
     updateProduct,
-    GetProductDetails
+    GetProductDetails,
+    GetSubTotal
 }
   

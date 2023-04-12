@@ -64,6 +64,7 @@ router.get('/getProduct',productController.GetProduct)
 router.post('/deleteProduct',productController.deleteProduct)
 router.post('/updateProduct',upload.single('file'),productController.updateProduct)
 router.get('/productDetails',productController.GetProductDetails)
+router.get('/getSubTotal',productController.GetSubTotal)
 
 
 

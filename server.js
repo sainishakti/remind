@@ -17,7 +17,7 @@ require('./models/index.js');
 
 
 
-const PORT = process.env.PORT || 3002
+const PORT = process.env.PORT || 3000
 
 //server
 const ipAddress = '192.168.1.22'
