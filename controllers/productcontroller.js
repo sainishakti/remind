@@ -137,7 +137,7 @@ const GetSubTotal = async (req, res) => {
         const{userId} = req.query;
         let subtotal = await orders.findAll({where: { id: userId }})
         console.log("................",subtotal);
-        if(users && users.length>0){
+        if(subtotal && subtotal.length>0){
             response.Message ="Data Get Successfully",
             response.success=true,
             response.data=subtotal[0].dataValues.subtotal
