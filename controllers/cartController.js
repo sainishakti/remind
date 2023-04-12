@@ -233,8 +233,9 @@ const order = async (req, res) => {
     try {
         // const{userId,quantity,price,image,title} = req.body;
         const data = req.body.data
+        const subtotal =req.body.subtotal
         for(let datas of data){
-        const subtotal = datas.quantity*datas.price
+       // const subtotal = datas.quantity*datas.price
             let info = {
                 userId:datas.userId,
                 quantity: datas.quantity,
